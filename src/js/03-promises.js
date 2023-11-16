@@ -34,7 +34,4 @@ document.getElementById('promiseForm').addEventListener('submit', function (even
         Notiflix.Notify.Failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
   }
-});- name: Set output
-  id: step1
-  run: echo "OUTPUT_NAME=output_value" >> $GITHUB_ENV- name: Use output
-  run: echo "The output is ${{ env.OUTPUT_NAME }}"
+}
