@@ -1,4 +1,4 @@
-import * as Notiflix from 'notiflix';
+import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -17,16 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const position = i;
         const delay = firstDelay + (position - 1) * step;
 
-        createPromise(position, delay)
+        createPromise(2, 1500)
           .then(({ position, delay }) => {
-            Notiflix.Notify.Success(
-              `✅ Fulfilled promise ${position} in ${delay}ms`
-            );
+            console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
           })
           .catch(({ position, delay }) => {
-            Notiflix.Notify.Failure(
-              `❌ Rejected promise ${position} in ${delay}ms`
-            );
+            console.log(`❌ Rejected promise ${position} in ${delay}ms`);
           });
       }
     });
