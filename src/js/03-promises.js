@@ -1,3 +1,6 @@
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.6.min.css';
+
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.form');
 
@@ -14,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const position = i;
         const delay = firstDelay + (position - 1) * step;
 
-        createPromise(position, delay)
+        createPromise(2, 1500)
           .then(({ position, delay }) => {
             console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
           })
@@ -23,5 +26,18 @@ document.addEventListener('DOMContentLoaded', function () {
           });
       }
     });
+
+    function createPromise(position, delay) {
+      return new Promise((resolve, reject) => {
+        const shouldResolve = Math.random() > 0.3;
+        setTimeout(() => {
+          if (shouldResolve) {
+            resolve({ position, delay });
+          } else {
+            reject({ position, delay });
+          }
+        }, delay);
+      });
+    }
   }
 });
