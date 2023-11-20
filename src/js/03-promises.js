@@ -1,6 +1,3 @@
-import * as Notiflix from 'notiflix';
-import 'notiflix/dist/notiflix-3.2.6.min.css';
-
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.form');
 
@@ -19,29 +16,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         createPromise(position, delay)
           .then(({ position, delay }) => {
-            Notiflix.Notify.Success(
-              `✅ Fulfilled promise ${position} in ${delay}ms`
-            );
+            console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
           })
           .catch(({ position, delay }) => {
-            Notiflix.Notify.Failure(
-              `❌ Rejected promise ${position} in ${delay}ms`
-            );
+            console.log(`❌ Rejected promise ${position} in ${delay}ms`);
           });
       }
     });
-
-    function createPromise(position, delay) {
-      return new Promise((resolve, reject) => {
-        const shouldResolve = Math.random() > 0.3;
-        setTimeout(() => {
-          if (shouldResolve) {
-            resolve({ position, delay });
-          } else {
-            reject({ position, delay });
-          }
-        }, delay);
-      });
-    }
   }
 });
